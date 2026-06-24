@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Card — Jay Air Heating & Cooling</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #c8d4dc;
+      font-family: 'Lexend', sans-serif;
+      padding: 3rem 2rem;
+      min-height: 100vh;
+    }
+
+    h2 {
+      text-align: center;
+      color: #0D1B3E;
+      font-size: .8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: .5rem;
+    }
+    .page-label {
+      text-align: center;
+      color: #3a5570;
+      font-size: .72rem;
+      font-weight: 500;
+      margin-bottom: 2.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .cards-row {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    .card-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .6rem;
+    }
+    .card-label {
+      font-size: .68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #3a5570;
+    }
+
+    /* Card size: 3.5" x 2" scaled 1.75x for screen */
+    .card {
+      width: 588px;
+      height: 336px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 30px rgba(0,0,0,.22);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    /* ── FRONT ── */
+    .card-front {
+      background: linear-gradient(135deg, #0D1B3E 0%, #162d5e 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 2.5rem;
+      gap: 2rem;
+    }
+    .deco-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(26,128,178,.08);
+    }
+    .c1 { width: 260px; height: 260px; top: -80px; right: -70px; }
+    .c2 { width: 160px; height: 160px; bottom: -60px; left: -40px; }
+    .front-accent-line {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #E03020, #ff5040);
+    }
+
+    .front-logo-wrap {
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+    }
+    .front-logo {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 14px;
+      padding: 6px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.35);
+      display: block;
+    }
+
+    .front-text {
+      position: relative;
+      z-index: 1;
+    }
+    .front-name {
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: .3rem;
+    }
+    .front-name span { color: #5DAAC8; }
+    .front-tagline {
+      color: rgba(255,255,255,.55);
+      font-size: .7rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: .8rem;
+    }
+    .front-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem;
+    }
+    .front-badge {
+      border: 1px solid rgba(93,170,200,.35);
+      color: #5DAAC8;
+      font-size: .62rem;
+      font-weight: 600;
+      padding: .2rem .6rem;
+      border-radius: 20px;
+      letter-spacing: .3px;
+    }
+    .front-badge.red {
+      border-color: rgba(224,48,32,.45);
+      color: #ff6050;
+    }
+
+    /* ── BACK ── */
+    .card-back {
+      background: #fff;
+      display: flex;
+      align-items: stretch;
+    }
+    .back-top-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #E03020, #1A80B2);
+    }
+    .back-left {
+      width: 7px;
+      background: linear-gradient(180deg, #1A80B2, #0D1B3E);
+      flex-shrink: 0;
+    }
+    .back-content {
+      flex: 1;
+      display: flex;
+      gap: 1rem;
+      padding: 1.4rem 1.2rem 1.2rem 1.2rem;
+      align-items: center;
+    }
+    .back-info { flex: 1; }
+    .back-company {
+      font-size: .88rem;
+      font-weight: 700;
+      color: #0D1B3E;
+      margin-bottom: .1rem;
+      line-height: 1.2;
+    }
+    .back-company span { color: #1A80B2; }
+    .back-sub {
+      font-size: .6rem;
+      font-weight: 500;
+      color: #1A80B2;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: .85rem;
+    }
+    .back-contact-item {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .72rem;
+      font-weight: 600;
+      color: #0D1B3E;
+      margin-bottom: .38rem;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+    .back-contact-item svg { flex-shrink: 0; }
+    .back-services {
+      margin-top: .75rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .25rem;
+    }
+    .back-svc-tag {
+      background: #EEF5FB;
+      color: #0D1B3E;
+      font-size: .58rem;
+      font-weight: 600;
+      padding: .15rem .45rem;
+      border-radius: 6px;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+
+    .back-qr {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+      flex-shrink: 0;
+    }
+    .back-qr-label {
+      font-size: .58rem;
+      font-weight: 600;
+      color: #0D1B3E;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      text-align: center;
+    }
+    .back-qr-url {
+      font-size: .6rem;
+      font-weight: 600;
+      color: #1A80B2;
+      text-align: center;
+    }
+    .back-lic {
+      position: absolute;
+      bottom: .5rem;
+      right: .8rem;
+      font-size: .55rem;
+      font-weight: 500;
+      color: rgba(13,27,62,.3);
+      font-family: 'Source Sans 3', sans-serif;
+    }
+    .back-exp {
+      position: absolute;
+      bottom: .5rem;
+      left: 1.2rem;
+      font-size: .55rem;
+      font-weight: 600;
+      color: #E03020;
+      font-family: 'Source Sans 3', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .divider-section {
+      border: none;
+      border-top: 2px dashed rgba(0,0,0,.12);
+      margin: 0 auto 3rem;
+      width: 620px;
+    }
+
+    @media print {
+      body { background: #fff; padding: 1rem; }
+      .card { box-shadow: none; }
+      h2, .page-label, .card-label { display: none; }
+      .divider-section { border-color: #ccc; }
+    }
+  </style>
+</head>
+<body>
+
+<h2>Jay Air Heating & Cooling — Business Cards</h2>
+<p class="page-label">Print: Ctrl + P → Save as PDF · Letter size · No margins</p>
+
+<!-- ── ENGLISH ── -->
+<div class="cards-row">
+  <div class="card-wrap">
+    <span class="card-label">Front (EN)</span>
+    <div class="card card-front">
+      <div class="deco-circle c1"></div>
+      <div class="deco-circle c2"></div>
+      <div class="front-accent-line"></div>
+      <div class="front-logo-wrap">
+        <img src="assets/logo.webp" alt="Jay Air logo" class="front-logo">
+      </div>
+      <div class="front-text">
+        <div class="front-name">Jay Air <span>Heating &amp;<br>Cooling</span> Inc</div>
+        <div class="front-tagline">30 Years of Experience · Orlando, FL</div>
+        <div class="front-badges">
+          <span class="front-badge">❄️ AC Installation</span>
+          <span class="front-badge">🔧 Repair</span>
+          <span class="front-badge red">🚨 24/7 Emergency</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-wrap">
+    <span class="card-label">Back (EN)</span>
+    <div class="card card-back" style="position:relative;">
+      <div class="back-top-bar"></div>
+      <div class="back-left"></div>
+      <div class="back-content">
+        <div class="back-info">
+          <div class="back-company">Jay Air <span>Heating &amp; Cooling</span> Inc</div>
+          <div class="back-sub">HVAC · Orlando · Central Florida</div>
+
+          <div class="back-contact-item">
+            <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#1A80B2" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.338c0-1.087.865-1.966 1.94-1.966h1.08a1.875 1.875 0 011.8 1.35l.682 2.726a1.875 1.875 0 01-.431 1.873l-.7.7a14.25 14.25 0 006.387 6.387l.7-.7a1.875 1.875 0 011.873-.431l2.726.682a1.875 1.875 0 011.35 1.8v1.08c0 1.075-.879 1.94-1.966 1.94C6.912 21.75 2.25 17.088 2.25 6.338z"/></svg>
+            (407) 782-4426
+          </div>
+          <div class="back-contact-item">
+            <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#1A80B2" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25H4.5a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5H4.5a2.25 2.25 0 00-2.25 2.25m19.5 0l-9.75 6.75L2.25 6.75"/></svg>
+            jayairteam@gmail.com
+          </div>
+          <div class="back-contact-item">
+            <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#1A80B2" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253"/></svg>
+            jayairflorida.com
+          </div>
+
+          <div class="back-services">
+            <span class="back-svc-tag">AC Installation</span>
+            <span class="back-svc-tag">AC Repair</span>
+            <span class="back-svc-tag">Maintenance</span>
+            <span class="back-svc-tag">Heating</span>
+            <span class="back-svc-tag">Thermostats</span>
+            <span class="back-svc-tag">24/7 Emergency</span>
+          </div>
+        </div>
+
+        <div class="back-qr">
+          <div id="qr-en"></div>
+          <div class="back-qr-label">Scan me</div>
+          <div class="back-qr-url">jayairflorida.com</div>
+        </div>
+      </div>
+      <span class="back-exp">30 Years of Experience</span>
+      <span class="back-lic">Lic. CAC1816530</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider-section">
+
+<!-- ── ESPAÑOL ── -->
+<div class="cards-row">
+  <div class="card-wrap">
+    <span class="card-label">Frente (ES)</span>
+    <div class="card card-front">
+      <div class="deco-circle c1"></div>
+      <div class="deco-circle c2"></div>
+      <div class="front-accent-line"></div>
+      <div class="front-logo-wrap">
+        <img src="assets/logo.webp" alt="Jay Air logo" class="front-logo">
+      </div>
+      <div class="front-text">
+        <div class="front-name">Jay Air <span>Heating &amp;<br>Cooling</span> Inc</div>
+        <div class="front-tagline">30 Años de Experiencia · Orlando, FL</div>
+        <div class="front-badges">
+          <span class="front-badge">❄️ Instalación A/C</span>
+          <span class="front-badge">🔧 Reparación</span>
+          <span class="front-badge red">🚨 Emergencias 24/7</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-wrap">
+    <span class="card-label">Reverso (ES)</span>
+    <div class="card card-back" style="position:relative;">
+      <div class="back-top-bar"></div>
+      <div class="back-left"></div>
+      <div class="back-content">
+        <div class="back-info">
+          <div class="back-company">Jay Air <span>Heating &amp; Cooling</span> Inc</div>
+          <div class="back-sub">HVAC · Orlando · Centro de Florida</div>
+
+          <div class="back-contact-item">
+            <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#1A80B2" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.338c0-1.087.865-1.966 1.94-1.966h1.08a1.875 1.875 0 011.8 1.35l.682 2.726a1.875 1.875 0 01-.431 1.873l-.7.7a14.25 14.25 0 006.387 6.387l.7-.7a1.875 1.875 0 011.873-.431l2.726.682a1.875 1.875 0 011.35 1.8v1.08c0 1.075-.879 1.94-1.966 1.94C6.912 21.75 2.25 17.088 2.25 6.338z"/></svg>
+            (407) 782-4426
+          </div>
+          <div class="back-contact-item">
+            <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#1A80B2" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25H4.5a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5H4.5a2.25 2.25 0 00-2.25 2.25m19.5 0l-9.75 6.75L2.25 6.75"/></svg>
+            jayairteam@gmail.com
+          </div>
+          <div class="back-contact-item">
+            <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#1A80B2" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253"/></svg>
+            jayairflorida.com
+          </div>
+
+          <div class="back-services">
+            <span class="back-svc-tag">Instalación A/C</span>
+            <span class="back-svc-tag">Reparación</span>
+            <span class="back-svc-tag">Mantenimiento</span>
+            <span class="back-svc-tag">Calefacción</span>
+            <span class="back-svc-tag">Termostatos</span>
+            <span class="back-svc-tag">Emergencias 24/7</span>
+          </div>
+        </div>
+
+        <div class="back-qr">
+          <div id="qr-es"></div>
+          <div class="back-qr-label">Escanear</div>
+          <div class="back-qr-url">jayairflorida.com</div>
+        </div>
+      </div>
+      <span class="back-exp">30 Años de Experiencia</span>
+      <span class="back-lic">Lic. CAC1816530</span>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script>
+  const cfg = {
+    text: "https://jayairflorida.com",
+    width: 90,
+    height: 90,
+    colorDark: "#0D1B3E",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+  };
+  new QRCode(document.getElementById("qr-en"), cfg);
+  new QRCode(document.getElementById("qr-es"), cfg);
+</script>
+
+</body>
+</html>
