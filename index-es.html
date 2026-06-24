@@ -604,7 +604,23 @@
       border-radius: var(--radius-xl);
       overflow: hidden;
       box-shadow: var(--shadow-lg);
+      position: relative;
     }
+    .fleet-track { display: flex; transition: transform .5s cubic-bezier(.4,0,.2,1); }
+    .fleet-slide { min-width: 100%; }
+    .fleet-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,.85); border: none; border-radius: 50%;
+      width: 38px; height: 38px; font-size: 1.3rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,.2); z-index: 2; transition: background .2s;
+    }
+    .fleet-btn:hover { background: #fff; }
+    .fleet-btn.prev { left: 12px; }
+    .fleet-btn.next { right: 12px; }
+    .fleet-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 2; }
+    .fleet-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.5); border: none; cursor: pointer; transition: background .2s; }
+    .fleet-dot.active { background: #fff; }
     .fleet-banner img {
       width: 100%;
       height: auto;
@@ -1488,8 +1504,15 @@
         </div>
       </div>
 
-      <div class="fleet-banner fade-up">
-        <img src="assets/vehiculo.webp" alt="Van de Jay Air lista para servir al Centro de Florida" loading="lazy">
+      <div class="fleet-banner fade-up" id="fleetCarousel">
+        <div class="fleet-track" id="fleetTrack">
+          <div class="fleet-slide"><img src="assets/vehiculo.webp" alt="Van de Jay Air lista para servir al Centro de Florida" loading="lazy"></div>
+          <div class="fleet-slide"><img src="assets/vehiculo-2.webp" alt="Van de Jay Air" loading="lazy"></div>
+          <div class="fleet-slide"><img src="assets/vehiculo-3.webp" alt="Van de Jay Air" loading="lazy"></div>
+        </div>
+        <button class="fleet-btn prev" onclick="fleetGo(fleetCur-1)">&#8249;</button>
+        <button class="fleet-btn next" onclick="fleetGo(fleetCur+1)">&#8250;</button>
+        <div class="fleet-dots" id="fleetDots"></div>
       </div>
     </div>
   </section>
@@ -1887,6 +1910,30 @@
     const nav        = document.getElementById('nav');
     menuToggle.addEventListener('click', () => nav.classList.toggle('open'));
     nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+    // Fleet carousel
+    let fleetCur = 0;
+    const fleetTrack = document.getElementById('fleetTrack');
+    const fleetDotsWrap = document.getElementById('fleetDots');
+    const fleetSlides = fleetTrack.querySelectorAll('.fleet-slide');
+    fleetSlides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'fleet-dot' + (i === 0 ? ' active' : '');
+      d.onclick = () => fleetGo(i);
+      fleetDotsWrap.appendChild(d);
+    });
+    function fleetGo(idx) {
+      fleetCur = (idx + fleetSlides.length) % fleetSlides.length;
+      fleetTrack.style.transform = 'translateX(-' + (fleetCur * 100) + '%)';
+      fleetDotsWrap.querySelectorAll('.fleet-dot').forEach((d, i) => d.classList.toggle('active', i === fleetCur));
+    }
+    const fleetEl = document.getElementById('fleetCarousel');
+    let fleetX = 0;
+    fleetEl.addEventListener('touchstart', e => { fleetX = e.touches[0].clientX; }, { passive: true });
+    fleetEl.addEventListener('touchend', e => {
+      const diff = fleetX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) fleetGo(diff > 0 ? fleetCur + 1 : fleetCur - 1);
+    });
 
     // Scroll-in animations
     const observer = new IntersectionObserver((entries) => {
